@@ -9,6 +9,9 @@ from agents.twitter_lookup_agent import lookup as twitter_lookup_agent
 from output_parsers import person_intel_parser, PersonIntel
 from third_parties.linkedin import scrape_linkedin_profile
 from third_parties.twitter import scrape_user_tweets
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def ice_break(name: str) -> Tuple[PersonIntel, str]:
@@ -19,7 +22,7 @@ def ice_break(name: str) -> Tuple[PersonIntel, str]:
     tweets = scrape_user_tweets(username=twitter_username, num_tweets=5)
 
     summary_template = """
-         given the Linkedin information {linkedin_information} and twitter {twitter_information} about a person from I want you to create:
+         given twitter {twitter_information} about a person from I want you to create:
          1. a short summary
          2. two interesting facts about them
          3. A topic that may interest them
